@@ -8,6 +8,8 @@
 # repeated consecutive characters
 # Display all failed rules.
 
+print("Plss enter that type of password is right password = Xyz@123")
+
 password = input("Enter Password : ")
 
 uppercase = False
