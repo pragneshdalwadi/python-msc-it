@@ -9,14 +9,12 @@ for i in range(3):
     subject1 = int(input("Enter Subject 1 Marks: "))
     subject2 = int(input("Enter Subject 2 Marks: "))
     subject3 = int(input("Enter Subject 3 Marks: "))
-    subject4 = int(input("Enter Subject 1 Marks: "))
-    subject5 = int(input("Enter Subject 2 Marks: "))
+    subject4 = int(input("Enter Subject 4 Marks: "))
+    subject5 = int(input("Enter Subject 5 Marks: "))
 
+    total = subject1 + subject2 + subject3 + subject4 + subject5
 
-    total = subject1 + subject2 + subject3
-
-    
-    percentage = total / 3
+    percentage = total / 5
 
     if percentage >= 90:
         grade = "A+"
@@ -31,34 +29,32 @@ for i in range(3):
     else:
         grade = "F"
 
-    students.append([name, total, percentage, grade])
+    students = students + [[0, name, total, percentage, grade]]
 
 
-
+# Sort students for total marks
 for i in range(3):
     for j in range(i + 1, 3):
 
-        if students[i][1] < students[j][1]:
+        if students[i][2] < students[j][2]:
 
             temp = students[i]
             students[i] = students[j]
             students[j] = temp
 
 
-
+# Assign ranks
 for i in range(3):
 
-    if i > 0 and students[i][1] == students[i - 1][1]:
-        rank = students[i - 1][4]
+    if i > 0 and students[i][2] == students[i - 1][2]:
+        students[i][0] = students[i - 1][0]
     else:
-        rank = i + 1
-
-    students[i].append(rank)
+        students[i][0] = i + 1
 
 
-
-print(f"{'Rank':<8}{'Name':<15}{'Total':<10}{'Percentage':<15}{'Grade'}")
+# Display result
+print(f"\n{'Rank':<8}{'Name':<15}{'Total':<10}{'Percentage':<15}{'Grade'}")
 print("-" * 65)
 
 for student in students:
-    print(f"{student[4]:<8}{student[0]:<15}{student[1]:<10}{student[2]:<15.2f}{student[3]}")
+    print(f"{student[0]:<8}{student[1]:<15}{student[2]:<10}{student[3]:<15.2f}{student[4]}")
